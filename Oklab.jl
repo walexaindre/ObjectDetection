@@ -6,7 +6,7 @@ function XYZtoOkLab(color::XYZ)
     0.0329845436 0.9293118715 0.0361456387;
     0.0482003018 0.2643662691 0.6338517070]
     
-    LMS = M1 * [color.X color.Y color.Z]
+    LMS = M1 * [color.X; color.Y; color.Z]
     #Power law companding
     LMS = cbrt.(LMS)
 
@@ -16,4 +16,9 @@ function XYZtoOkLab(color::XYZ)
     0.0259040371 0.7827717662 -0.8086757660]
 
     M2 * LMS
+end
+
+function LinearRGBtoOkLab(r,g,b)
+    X,Y,Z = AdobeLinearRGBtoXYZ * [r; g; b]
+    XYZtoOkLab(XYZ(X,Y,Z))
 end

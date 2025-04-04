@@ -40,16 +40,16 @@ function LinearRGBtoXYZ(space::RGBColorSpace)
     Xg,Yg,Zg = transform(g)
     Xb,Yb,Zb = transform(b)
 
-    XM = [Xr, Xg, Xb;
-        Yr, Yg, Yb;
-        Zr, Zg, Zb]
+    XM = [Xr Xg Xb;
+        Yr Yg Yb;
+        Zr Zg Zb]
 
     ref_white = Illuminant[space.reference_white]
 
     Sr,Sg,Sb = XM \ [ref_white.X, ref_white.Y, ref_white.Z]
-    [Xr*Sr, Xg*Sg, Xb*Sb;
-        Yr*Sr, Yg*Sg, Yb*Sb;
-        Zr*Sr, Zg*Sg, Zb*Sb]
+    [Xr*Sr Xg*Sg Xb*Sb;
+        Yr*Sr Yg*Sg Yb*Sb;
+        Zr*Sr Zg*Sg Zb*Sb]
 end
 
 function XYZtoLinearRGB(space::RGBColorSpace)

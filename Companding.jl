@@ -25,8 +25,8 @@ end
 
 
 function LinearRGBtoRGBLstar(v)
-    const ϵ = 216/24389
-    const k100 = 24389/2700
+    ϵ = 216/24389
+    k100 = 24389/2700
 
     if v > ϵ
         return 1.16 * cbrt(v) - 0.16
@@ -36,9 +36,9 @@ function LinearRGBtoRGBLstar(v)
 end
 
 function RGBtoLinearRGB(V)
-    const ϵ = 2/25
-    const kinv = 27/24389
-    const kinv100 = kinv * 100
+    ϵ = 2/25
+    kinv100 = 2700/24389
+
     if V > ϵ
         return (25*V+4)^3/24389
     else
